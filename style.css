@@ -1,5 +1,5 @@
 /* =====================================================
-   GLOBAL RESET
+    RESET
    ===================================================== */
 
 * {
@@ -52,72 +52,156 @@ section {
 }
 
 
-
 /* =====================================================
-   SECTION 2 — PATIENT ARCHIVE
+   SECTION 1 — SCIENTIFIC PANEL
    ===================================================== */
 
-#section-2 {
+#sciencePanel {
+  position: fixed;
+  top: 380px;
+  right: 20px;
+  width: 280px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 2px solid #111;
+  padding: 12px;
+  backdrop-filter: blur(6px);
+  z-index: 19;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+
+.science-header {
+  margin-bottom: 10px;
+}
+
+.science-header strong {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.science-header p {
+  font-size: 10px;
+  line-height: 1.3;
+  opacity: 0.65;
+  margin-top: 3px;
+}
+
+.science-viewer {
+  width: 100%;
+  height: calc(100% - 42px);
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.science-viewer img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* =====================================================
+   SECTION 2 — USER RECORDS PANEL
+   ===================================================== */
+
+#recordsPanel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 215px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #111;
+  backdrop-filter: blur(6px);
+  z-index: 21;
+  overflow: hidden;
+  transition: width 0.35s ease, height 0.35s ease, opacity 0.6s ease;
+}
+
+#recordsPanel:hover {
+  width: 320px;
+  height: 560px;
+}
+
+.records-tab {
+  height: 58px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 120px 0 220px;
-  background: #f5f5f5;
-}
-
-.writing-block {
-  width: 100%;
-  display: flex;
   justify-content: center;
-  margin-bottom: 40px;
-  position: relative;
-  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.95);
 }
 
-.writing-block:last-child {
-  margin-bottom: 0;
+#recordsPanel:hover .records-tab {
+  border-bottom: 1px solid #cfcfcf;
 }
 
-.writing-card {
+.records-tab span:first-child {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.records-id {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+.records-content {
+  height: calc(100% - 58px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#recordsPanel:hover .records-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.records-inner {
+  height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.records-card {
   background: #ffffff;
-  padding: 40px;
-  width: min(700px, 85vw);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  position: relative;
+  padding: 10px;
+  border: 1px solid #d6d6d6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.writing-card img {
+.records-card img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.record-overlay {
-  position: absolute;
-  top: 18px;
-  right: calc(50% - 350px + 18px);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 10px 12px;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-align: right;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-  z-index: 5;
+.records-inner::-webkit-scrollbar {
+  width: 8px;
 }
 
-.record-overlay .shortcut {
-  font-size: 11px;
-  opacity: 0.6;
+.records-inner::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
 }
 
-.writing-block:hover .record-overlay {
-  opacity: 1;
+.records-inner::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
 }
-
-
 
 /* =====================================================
    TRANSITION SECTION
