@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FaceMesh Scan</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section id="section1">
+    <div id="dermaPanel">
+      <strong>DERMATOLOGY SCAN // ACTIVE</strong><br><br>
+      REDNESS INDEX: --<br>
+      TEXTURE VARIANCE: --<br>
+      PORE DENSITY: --<br>
+      WRINKLE PROBABILITY: --<br>
+      IDEAL DEVIATION: --<br>
+      SEBUM INDEX: --
+    </div>
+  </section>
+
+  <!-- ================= SCIENCE PANEL ================= -->
+<div id="sciencePanel">
+  <div class="science-header">
+    <strong>SCIENTIFIC BASIS</strong>
+    <p>reference image / comparison set</p>
+  </div>
+
+  <div class="science-viewer">
+    <img id="scienceImage" src="scientific1.jpg" alt="Scientific reference image">
+  </div>
+</div>
+
+<div id="recordsPanel">
+  <div class="records-tab">
+    <span>USER #38121 RECORDS</span>
+    <span class="records-id">click to access all existing files</span>
+  </div>
+
+
+    <!-- ================= USER RECORD PANEL ================= -->
+
+  <div class="records-content">
+    <div class="records-inner">
+
+      <div class="records-card" onclick="openRecord('patient-01.html')">
+        <img src="writing1.jpg" alt="User record 1">
+      </div>
+
+      <div class="records-card" onclick="openRecord('patient-02.html')">
+        <img src="writing2.jpg" alt="User record 2">
+      </div>
+
+      <div class="records-card" onclick="openRecord('patient-03.html')">
+        <img src="writing3.jpg" alt="User record 3">
+      </div>
+
+      <div class="records-card" onclick="openRecord('patient-04.html')">
+        <img src="writing4.jpg" alt="User record 4">
+      </div>
+
+      <div class="records-card" onclick="openRecord('patient-05.html')">
+        <img src="writing5.jpg" alt="User record 5">
+      </div>
+
+      <div class="records-card" onclick="openRecord('patient-06.html')">
+        <img src="writing6.jpg" alt="User record 6">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- ================= TRANSITION ================= -->
+  <section id="transition">
+    <div class="transition-inner">
+
+      <div class="transition-intro fade-up">
+        <p class="transition-label">POST-CLINICAL RECOMMENDATION</p>
+      </div>
+
+      <div class="transition-step fade-up">
+        <div class="routine-item">
+          <div class="routine-number">01</div>
+          <div class="routine-content">
+            <p class="clinical-term">surface renewal</p>
+            <p class="consumer-term">daily exfoliating solution</p>
+          </div>
+        </div>
+
+        <div class="routine-item">
+          <div class="routine-number">02</div>
+          <div class="routine-content">
+            <p class="clinical-term">oil regulation</p>
+            <p class="consumer-term">pore refining serum</p>
+          </div>
+        </div>
+
+        <div class="routine-item">
+          <div class="routine-number">03</div>
+          <div class="routine-content">
+            <p class="clinical-term">barrier support</p>
+            <p class="consumer-term">barrier repair cream</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3 ================= -->
+  <section id="section-3">
+    <div class="shop-banner">15% off your first routine</div>
+
+    <div class="shop-shell">
+
+      <header class="shop-header">
+        <div class="shop-logo">SEPHORA_</div>
+
+        <div class="shop-search-wrap">
+          <div class="shop-search">Search products, concerns, ingredients</div>
+        </div>
+
+        <div class="shop-icons">ACCOUNT WISHLIST BAG</div>
+      </header>
+
+      <nav class="shop-nav">
+        <span>Skincare</span>
+        <span>Routines</span>
+        <span>Ingredients</span>
+        <span>Concerns</span>
+        <span class="active">For You</span>
+      </nav>
+
+      <div class="shop-recommendation">
+        recommended for: surface renewal / oil regulation / barrier support
+      </div>
+
+      <div class="category-row">
+        <div class="category-pill">Surface Renewal</div>
+        <div class="category-pill">Oil Regulation</div>
+        <div class="category-pill">Barrier Support</div>
+        <div class="category-pill">Texture</div>
+      </div>
+
+      <!-- ================= PRODUCT GRID ================= -->
+      <div class="product-grid">
+
+        <!-- CARD 1 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-1"></div>
+            <div class="product-info">
+              <p class="product-tag">surface renewal</p>
+              <h3>The Ordinary Glycolic Acid 7% Toner</h3>
+              <p class="product-copy">exfoliates dull surface build-up and improves visible texture</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>glycolic acid</li>
+                <li>aloe vera</li>
+                <li>tasmanian pepperberry</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>continuous surface exfoliation</li>
+                <li>accelerated cell turnover</li>
+                <li>dependence on renewal cycle</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-2"></div>
+            <div class="product-info">
+              <p class="product-tag">oil regulation</p>
+              <h3>The Ordinary Niacinamide 10% + Zinc 1%</h3>
+              <p class="product-copy">reduces visible shine and supports a more even surface</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>niacinamide</li>
+                <li>zinc PCA</li>
+                <li>water-based serum base</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>oil output regulation</li>
+                <li>visible pore minimisation</li>
+                <li>normalised skin behaviour</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-3"></div>
+            <div class="product-info">
+              <p class="product-tag">surface renewal</p>
+              <h3>La Roche-Posay Effaclar Serum</h3>
+              <p class="product-copy">targets congestion and refines uneven texture</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>salicylic acid</li>
+                <li>glycolic acid</li>
+                <li>LHA</li>
+                <li>thermal spring water</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>active congestion treatment</li>
+                <li>inflammation control cycle</li>
+                <li>ongoing correction routine</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-4"></div>
+            <div class="product-info">
+              <p class="product-tag">overnight renewal</p>
+              <h3>Drunk Elephant T.L.C. Framboos Night Serum</h3>
+              <p class="product-copy">resurfaces overnight for smoother, brighter-looking skin</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>glycolic acid</li>
+                <li>lactic acid</li>
+                <li>salicylic acid</li>
+                <li>citric acid</li>
+                <li>tartaric acid</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>overnight chemical resurfacing</li>
+                <li>accelerated renewal phase</li>
+                <li>maintenance through irritation</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-5"></div>
+            <div class="product-info">
+              <p class="product-tag">best seller</p>
+              <h3>Paula’s Choice 2% BHA Liquid Exfoliant</h3>
+              <p class="product-copy">unclogs pores and smooths rough, uneven skin tone</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>salicylic acid (2% BHA)</li>
+                <li>green tea extract</li>
+                <li>methylpropanediol</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>deep pore exfoliation</li>
+                <li>continuous debris removal</li>
+                <li>sustained treatment dependency</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 6 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-6"></div>
+            <div class="product-info">
+              <p class="product-tag">barrier support</p>
+              <h3>CeraVe Moisturising Cream</h3>
+              <p class="product-copy">hydrates dry skin and helps restore the protective barrier</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>ceramides</li>
+                <li>hyaluronic acid</li>
+                <li>petrolatum</li>
+                <li>dimethicone</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>barrier repair response</li>
+                <li>restoration after intervention</li>
+                <li>long-term maintenance layer</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 7 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-7"></div>
+            <div class="product-info">
+              <p class="product-tag">surface renewal</p>
+              <h3>COSRX BHA Blackhead Power Liquid</h3>
+              <p class="product-copy">clarifies pores and removes excess surface build-up</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>betaine salicylate</li>
+                <li>niacinamide</li>
+                <li>willow bark water</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>pore clearing cycle</li>
+                <li>sebum dissolution process</li>
+                <li>ongoing surface regulation</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 8 -->
+        <article class="product-card" onclick="cycleCard(this)">
+          <div class="card-state active">
+            <div class="product-image product-8"></div>
+            <div class="product-info">
+              <p class="product-tag">clarifying toner</p>
+              <h3>COSRX AHA/BHA Clarifying Treatment Toner</h3>
+              <p class="product-copy">gently refreshes texture and prepares skin for treatment</p>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag">ingredients</p>
+              <ul>
+                <li>AHA</li>
+                <li>BHA</li>
+                <li>mineral water</li>
+                <li>purifying botanical ingredients</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-state">
+            <div class="product-info alt">
+              <p class="product-tag system">system effect</p>
+              <ul>
+                <li>daily texture correction</li>
+                <li>preventive exfoliation routine</li>
+                <li>continuous surface management</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="shop-pagination-wrap">
+        <p class="results-count">Showing 8 of 4541</p>
+
+        <div class="pagination">
+          <button class="page-btn prev-btn" onclick="changePage(-1)">Previous</button>
+          <div class="page-numbers" id="pageNumbers"></div>
+          <button class="page-btn next-btn" onclick="changePage(1)">Next</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= JAVASCRIPTS ================= -->
+<script>
+const panel = document.getElementById("dermaPanel");
+const sciencePanel = document.getElementById("sciencePanel");
+const recordsPanel = document.getElementById("recordsPanel");
+const section1 = document.getElementById("section1");
+
+window.addEventListener("scroll", () => {
+  const bottom = section1.getBoundingClientRect().bottom;
+
+  if (bottom <= 0) {
+    panel.classList.add("hidden");
+    sciencePanel.classList.add("hidden");
+    recordsPanel.classList.add("hidden");
+  } else {
+    panel.classList.remove("hidden");
+    sciencePanel.classList.remove("hidden");
+    recordsPanel.classList.remove("hidden");
+  }
+});
+
+function openRecord(url) {
+  window.location.href = url;
+}
+
+function cycleCard(card) {
+  const states = card.querySelectorAll(".card-state");
+  let currentIndex = 0;
+
+  states.forEach((state, index) => {
+    if (state.classList.contains("active")) {
+      currentIndex = index;
+      state.classList.remove("active");
+    }
+  });
+
+  const nextIndex = (currentIndex + 1) % states.length;
+  states[nextIndex].classList.add("active");
+}
+
+const fadeEls = document.querySelectorAll(".fade-up");
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.28 });
+
+fadeEls.forEach((el) => fadeObserver.observe(el));
+
+let currentPage = 1;
+const totalPages = 999;
+//image looping on the science panel
+const scienceImages = [
+  "scientific1.jpg",
+  "scientific2.jpg",
+  "scientific3.jpg",
+  "scientific4.jpg",
+  "scientific5.jpg",
+  "scientific6.jpg"
+];
+
+let currentScienceImage = 0;
+const scienceImageEl = document.getElementById("scienceImage");
+
+function rotateScienceImage() {
+  if (!scienceImageEl) return;
+
+  currentScienceImage = (currentScienceImage + 1) % scienceImages.length;
+  scienceImageEl.src = scienceImages[currentScienceImage];
+}
+
+setInterval(rotateScienceImage, 2000);
+
+function renderPagination() {
+  const pageContainer = document.getElementById("pageNumbers");
+  if (!pageContainer) return;
+
+  pageContainer.innerHTML = "";
+
+  const pages = [];
+  pages.push(1);
+
+  for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+    if (i > 1 && i < totalPages) {
+      pages.push(i);
+    }
+  }
+
+  pages.push(totalPages);
+
+  const uniquePages = [...new Set(pages)].sort((a, b) => a - b);
+
+  for (let i = 0; i < uniquePages.length; i++) {
+    const page = uniquePages[i];
+
+    if (i > 0 && page - uniquePages[i - 1] > 1) {
+      const ellipsis = document.createElement("span");
+      ellipsis.className = "page-ellipsis";
+      ellipsis.textContent = "...";
+      pageContainer.appendChild(ellipsis);
+    }
+
+    const pageEl = document.createElement("span");
+    pageEl.className = "page-number";
+
+    if (page === currentPage) {
+      pageEl.classList.add("active");
+    }
+
+    pageEl.textContent = page;
+    pageEl.onclick = () => {
+      currentPage = page;
+      renderPagination();
+    };
+
+    pageContainer.appendChild(pageEl);
+  }
+}
+
+function changePage(direction) {
+  currentPage += direction;
+
+  if (currentPage < 1) currentPage = 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  renderPagination();
+}
+
+renderPagination();
+</script>
+
+  <script src="meshface.js"></script>
+</body>
+</html>
