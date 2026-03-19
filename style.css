@@ -1,0 +1,679 @@
+/* =====================================================
+   GLOBAL RESET
+   ===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  font-family: monospace;
+  background: #f5f5f5;
+}
+
+section {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+
+
+
+/* =====================================================
+   SECTION 1 — FACEMESH SCAN
+   ===================================================== */
+
+#section1 {
+  background: black;
+}
+
+#dermaPanel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #111;
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  width: 280px;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+  transition: opacity 0.6s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+/* =====================================================
+   SECTION 2 — PATIENT ARCHIVE
+   ===================================================== */
+
+#section-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 0 220px;
+  background: #f5f5f5;
+}
+
+.writing-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative;
+  cursor: pointer;
+}
+
+.writing-block:last-child {
+  margin-bottom: 0;
+}
+
+.writing-card {
+  background: #ffffff;
+  padding: 40px;
+  width: min(700px, 85vw);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.writing-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.record-overlay {
+  position: absolute;
+  top: 18px;
+  right: calc(50% - 350px + 18px);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 12px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-align: right;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.record-overlay .shortcut {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.writing-block:hover .record-overlay {
+  opacity: 1;
+}
+
+
+
+/* =====================================================
+   TRANSITION SECTION
+   ===================================================== */
+
+#transition {
+  min-height: auto;
+  background: linear-gradient(
+    to bottom,
+    #f5f5f5 0%,
+    #f2f2f2 18%,
+    #f0eee9 55%,
+    #ece7df 100%
+  );
+  position: relative;
+  padding-bottom: 120px;
+}
+
+.transition-inner {
+  width: min(860px, 88vw);
+  margin: 0 auto;
+  padding: 10vh 0 0;
+}
+
+.transition-inner::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #b30000;
+  margin: 40px auto 80px auto;
+}
+
+.transition-inner::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #b30000;
+  margin: 40px auto;
+}
+
+.transition-intro,
+.transition-step,
+.transition-outro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.transition-intro {
+  margin-bottom: 10vh;
+}
+
+.transition-step {
+  margin-bottom: 0;
+}
+
+.transition-outro {
+  margin-top: 0;
+}
+
+.transition-label {
+  font-size: 20px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #b30000;
+  font-family: monospace;
+}
+
+
+
+/* =====================================================
+   ROUTINE LIST (TRANSITION)
+   ===================================================== */
+
+.routine-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.routine-item:last-child {
+  margin-bottom: 8px;
+}
+
+.routine-number {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: #b30000;
+  min-width: 28px;
+}
+
+.routine-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.clinical-term {
+  font-family: monospace;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.consumer-term {
+  font-family: monospace;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b30000;
+}
+
+
+
+/* =====================================================
+   FADE-IN ANIMATION
+   ===================================================== */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* =====================================================
+   SECTION 3 — CONSUMER INTERFACE
+   ===================================================== */
+
+#section-3 {
+  min-height: 100vh;
+  margin-top: 0;
+  background: #f5f2ec;
+  padding: 0 0 120px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shop-banner {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 12px 20px;
+  letter-spacing: 0.02em;
+}
+
+.shop-shell {
+  width: min(1480px, 94vw);
+  margin: 0 auto;
+  padding-top: 28px;
+}
+
+.shop-header {
+  display: grid;
+  grid-template-columns: 260px 1fr 220px;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.shop-logo {
+  font-size: clamp(28px, 3vw, 52px);
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  color: #111;
+  margin-left: -10px;
+}
+
+.shop-search-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.shop-search {
+  width: 100%;
+  height: 56px;
+  border: 1px solid #d3cdc3;
+  border-radius: 999px;
+  background: transparent;
+  padding: 0 22px;
+  font-size: 16px;
+  outline: none;
+  color: #111;
+  text-align: center;
+}
+
+.shop-search::placeholder {
+  color: #a7a099;
+  font-style: italic;
+  text-align: center;
+}
+
+.shop-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.shop-nav {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0 20px;
+  border-bottom: 1px solid #ddd6cc;
+  font-size: 15px;
+  text-transform: lowercase;
+  color: #111;
+}
+
+.shop-nav .active {
+  color: #b30000;
+}
+
+.shop-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 34px 0 40px;
+}
+
+.shop-breadcrumb {
+  font-size: 14px;
+  color: #7d776f;
+  text-transform: lowercase;
+}
+
+.shop-recommendation {
+  font-size: 14px;
+  color: #b30000;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.category-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+  margin-bottom: 48px;
+}
+
+.category-pill {
+  border: 1px solid #d9d2c8;
+  border-radius: 999px;
+  padding: 18px 12px;
+  text-align: center;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #111;
+  text-transform: lowercase;
+}
+
+
+
+/* =====================================================
+   PRODUCT GRID
+   ===================================================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin-top: 28px;
+}
+
+.product-card {
+  background: #fffdfa;
+  border: 1px solid #ddd6cc;
+  min-height: 430px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.06);
+}
+
+.card-state {
+  display: none;
+  min-height: 430px;
+}
+
+.card-state.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  height: 250px;
+  border-bottom: 1px solid #ebe4da;
+  background-color: #f7f4ee;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-info {
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-info.alt {
+  justify-content: center;
+  min-height: 430px;
+  padding: 28px 24px;
+}
+
+.product-tag {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8d867c;
+}
+
+.product-tag.system {
+  color: #5c5751;
+}
+
+.product-info ul {
+  margin-top: 16px;
+  gap: 14px;
+}
+
+.product-tag.danger {
+  color: #b30000;
+}
+
+.product-info h3 {
+  font-size: 30px;
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.product-copy {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #3d3b38;
+}
+
+.product-info ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.product-info li {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 23px;
+  line-height: 1.12;
+  color: #111;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}
+
+
+/* =====================================================
+   REAL PRODUCT IMAGES
+   ===================================================== */
+
+.product-1 { background-image: url("images/product-1.png"); }
+.product-2 { background-image: url("images/product-2.png"); }
+.product-3 { background-image: url("images/product-3.png"); }
+.product-4 { background-image: url("images/product-4.png"); }
+.product-5 { background-image: url("images/product-5.png"); }
+.product-6 { background-image: url("images/product-6.png"); }
+.product-7 { background-image: url("images/product-7.png"); }
+.product-8 { background-image: url("images/product-8.png"); }
+
+/* =====================================================
+   PAGINATION
+   ===================================================== */
+
+
+   
+.shop-pagination-wrap {
+  margin-top: 40px;
+  padding: 20px 0 40px;
+  padding-top: 30px;
+  text-align: center;
+  border-top: 1px solid #e5ded4;
+}
+
+.results-count {
+  font-size: 18px;
+  color: #5f5b56;
+  margin-bottom: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #b30000;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-btn:hover {
+  opacity: 0.7;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-number,
+.page-ellipsis {
+  font-size: 18px;
+  color: #4e4a45;
+}
+
+.page-number {
+  cursor: pointer;
+}
+
+.page-number.active {
+  color: #111;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .pagination {
+    gap: 16px;
+  }
+
+  .page-number,
+  .page-ellipsis,
+  .page-btn,
+  .results-count {
+    font-size: 16px;
+  }
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .category-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .shop-header {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-icons {
+    justify-content: flex-start;
+  }
+
+  .shop-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  #section-2 {
+    padding: 90px 0 180px;
+  }
+
+  .writing-card {
+    padding: 20px;
+    width: min(92vw, 700px);
+  }
+
+  .record-overlay {
+    right: 20px;
+    top: 12px;
+  }
+
+  .transition-inner {
+    padding: 9vh 0 0;
+  }
+
+  .transition-intro {
+    margin-bottom: 8vh;
+  }
+
+  .routine-item {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .consumer-term {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop-logo {
+    font-size: 34px;
+  }
+
+  .product-info h3 {
+    font-size: 26px;
+  }
+
+  .product-info li {
+    font-size: 21px;
+  }
+}

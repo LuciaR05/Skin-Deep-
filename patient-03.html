@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Record — 03</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ===============================
+       RESET + BASE
+       =============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F1A22;
+      font-family: monospace;
+      color: #0F1A22;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ===============================
+       RECORD CONTAINER
+       =============================== */
+    .record-wrapper {
+      background: #F4F6F7;
+      width: min(900px, 90vw);
+      padding: 48px 56px;
+      border: 1px solid #C9D1D6;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    /* ===============================
+       HEADER
+       =============================== */
+    .record-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #C9D1D6;
+      padding-bottom: 20px;
+    }
+
+    .record-title {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: #1C2E3A;
+      line-height: 1.6;
+    }
+
+    .record-status {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #7A8B98;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    /* ===============================
+       PATIENT META
+       =============================== */
+    .patient-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 60px;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .meta-label {
+      color: #7A8B98;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      color: #0F1A22;
+      line-height: 1.5;
+    }
+
+    /* ===============================
+       NOTES / PRESCRIPTION
+       =============================== */
+    .record-notes {
+      border-top: 1px solid #C9D1D6;
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+    }
+
+    .clinical-notes {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #0F1A22;
+    }
+
+    .clinical-notes p {
+      margin-bottom: 16px;
+    }
+
+    .prescription {
+      border: 1px solid #1C2E3A;
+      padding: 20px;
+      font-size: 13px;
+      background: #FFFFFF;
+    }
+
+    .prescription-title {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+      color: #1C2E3A;
+    }
+
+    .prescription-item {
+      margin-bottom: 12px;
+    }
+
+    .drug {
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .dose {
+      color: #7A8B98;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* ===============================
+       FOOTER / EXIT
+       =============================== */
+    .record-footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #7A8B98;
+      gap: 20px;
+    }
+
+    .exit {
+      cursor: pointer;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .exit:hover {
+      text-decoration: underline;
+    }
+
+    /* ===============================
+       RESPONSIVE
+       =============================== */
+    @media (max-width: 760px) {
+      .record-wrapper {
+        padding: 32px 28px;
+      }
+
+      .record-header,
+      .record-footer,
+      .record-notes,
+      .patient-meta {
+        display: block;
+      }
+
+      .record-status {
+        margin-top: 12px;
+        text-align: left;
+      }
+
+      .patient-meta > div {
+        margin-bottom: 18px;
+      }
+
+      .prescription {
+        margin-top: 28px;
+      }
+
+      .record-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="record-wrapper">
+
+    <!-- HEADER -->
+    <div class="record-header">
+      <div class="record-title">
+        PATIENT RECORD — 03<br>
+        USER: 38121
+      </div>
+      <div class="record-status">
+        STATUS: ESCALATED REVIEW<br>
+        FILE TYPE: DERMATOLOGY LOG
+      </div>
+    </div>
+
+    <!-- META -->
+    <div class="patient-meta">
+      <div>
+        <div class="meta-label">USER ID</div>
+        <div class="meta-value">38121</div>
+      </div>
+
+      <div>
+        <div class="meta-label">AGE</div>
+        <div class="meta-value">21</div>
+      </div>
+
+      <div>
+        <div class="meta-label">INTERFACE CONDITION</div>
+        <div class="meta-value">Persistent Acne / Surface Congestion / Post-Inflammatory Marking</div>
+      </div>
+
+      <div>
+        <div class="meta-label">DATE REVIEWED</div>
+        <div class="meta-value">19.05.2023</div>
+      </div>
+    </div>
+
+    <!-- NOTES + PRESCRIPTION -->
+    <div class="record-notes">
+
+      <div class="clinical-notes">
+        <p>
+          Second follow-up assessment conducted after adjusted regulation protocol.
+          Improvement: limited. Active inflammation remains present along the
+          cheeks and jawline, with continued congestion and visible post-inflammatory
+          marking across the facial surface.
+        </p>
+
+        <p>
+          User reports sustained adherence to cleansing, exfoliation, and nightly
+          retinoid use. Despite routine compliance, the interface remains unstable,
+          with flare cycles continuing and visible texture variance only slightly reduced.
+        </p>
+
+        <p>
+          Condition now framed as requiring intensified intervention rather than
+          routine balancing alone. Skin is no longer treated as temporarily disrupted,
+          but as a surface requiring ongoing correction and monitored escalation.
+        </p>
+      </div>
+
+      <div class="prescription">
+        <div class="prescription-title">
+          ESCALATED CORRECTION PROTOCOL
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Continue Tretinoin</div>
+          <div class="dose">PM — maintain turnover protocol</div>
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Oral Antibiotic</div>
+          <div class="dose">Short course — inflammatory suppression</div>
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Azelaic Acid</div>
+          <div class="dose">Alternate nights — post-inflammatory marking</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="record-footer">
+      <div>ARCHIVED UNDER: USER 38121 / ESCALATED INTERVENTION</div>
+      <div class="exit" onclick="history.back()">← RETURN</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

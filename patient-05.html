@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Record — 05</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ===============================
+       RESET + BASE
+       =============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F1A22;
+      font-family: monospace;
+      color: #0F1A22;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===============================
+       RECORD CONTAINER
+       =============================== */
+    .record-wrapper {
+      background: #F4F6F7;
+      width: min(900px, 90vw);
+      padding: 48px 56px;
+      border: 1px solid #C9D1D6;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    /* ===============================
+       HEADER
+       =============================== */
+    .record-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #C9D1D6;
+      padding-bottom: 20px;
+    }
+
+    .record-title {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: #1C2E3A;
+    }
+
+    .record-status {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #7A8B98;
+      text-align: right;
+    }
+
+    /* ===============================
+       PATIENT META
+       =============================== */
+    .patient-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 60px;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .meta-label {
+      color: #7A8B98;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      color: #0F1A22;
+    }
+
+    /* ===============================
+       NOTES / PRESCRIPTION
+       =============================== */
+    .record-notes {
+      border-top: 1px solid #C9D1D6;
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+    }
+
+    .clinical-notes {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #0F1A22;
+    }
+
+    .clinical-notes p {
+      margin-bottom: 16px;
+    }
+
+    .prescription {
+      border: 1px solid #1C2E3A;
+      padding: 20px;
+      font-size: 13px;
+      background: #FFFFFF;
+    }
+
+    .prescription-title {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+      color: #1C2E3A;
+    }
+
+    .prescription-item {
+      margin-bottom: 12px;
+    }
+
+    .drug {
+      font-weight: bold;
+    }
+
+    .dose {
+      color: #7A8B98;
+      font-size: 12px;
+    }
+
+    /* ===============================
+       FOOTER / EXIT
+       =============================== */
+    .record-footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #7A8B98;
+    }
+
+    .exit {
+      cursor: pointer;
+      letter-spacing: 0.12em;
+    }
+
+    .exit:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="record-wrapper">
+
+    <!-- HEADER -->
+    <div class="record-header">
+      <div class="record-title">
+        PATIENT RECORD — 05
+      </div>
+      <div class="record-status">
+        STATUS: ACTIVE<br>
+        FILE TYPE: DERMATOLOGY
+      </div>
+    </div>
+
+    <!-- META -->
+    <div class="patient-meta">
+      <div>
+        <div class="meta-label">PATIENT</div>
+        <div class="meta-value">Elena</div>
+      </div>
+      <div>
+        <div class="meta-label">AGE</div>
+        <div class="meta-value">21</div>
+      </div>
+      <div>
+        <div class="meta-label">PRIMARY CONCERN</div>
+        <div class="meta-value">Severe Acne</div>
+      </div>
+      <div>
+        <div class="meta-label">ONSET</div>
+        <div class="meta-value">Adolescence</div>
+      </div>
+    </div>
+
+    <!-- NOTES + PRESCRIPTION -->
+    <div class="record-notes">
+
+      <div class="clinical-notes">
+        <p>
+          Patient presents with long-term acne unresponsive to previous topical
+          and oral treatments.
+        </p>
+
+        <p>
+          Condition is reframed as severe and requiring systemic intervention.
+          Treatment plan prioritises visible clearance over secondary effects.
+        </p>
+
+        <p>
+          Compliance is emphasised. Monitoring protocols are introduced.
+        </p>
+      </div>
+
+      <div class="prescription">
+        <div class="prescription-title">
+          PRESCRIPTION
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Isotretinoin</div>
+          <div class="dose">Oral — monitored course</div>
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Mandatory Pregnancy Test</div>
+          <div class="dose">Monthly</div>
+        </div>
+
+        <div class="prescription-item">
+          <div class="drug">Blood Monitoring</div>
+          <div class="dose">Ongoing</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="record-footer">
+      <div>ARCHIVED UNDER: SKIN / RISK MANAGEMENT</div>
+      <div class="exit" onclick="history.back()">← RETURN</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
